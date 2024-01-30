@@ -4,6 +4,8 @@ const input = document.querySelector(".todo-input");
 
 const todoContainer = document.querySelector(".todo-container");
 
+const todos = document.querySelectorAll(".todo");
+
 const checkboxes = document.querySelectorAll(".checkbox");
 
 const removes = document.querySelectorAll(".remove-icon");
@@ -22,21 +24,29 @@ const changeTheme = () => {
 	background.src = "";
 };
 
+// dragging func
+
+todos.forEach((todo) => {
+	todo.addEventListener("dragstart", () => {
+		console.log("hello world");
+	});
+});
+
 // Uncomplete items checker func
 
-const itemsChecker = () => {
-	if (itemsCount.textContent !== "0") {
-		todoContainer.forEach((eachTodo) => {
-			let activeItems = 0;
-			if (eachTodo.dataset.status === "active") {
-				activeItems++;
-				itemsLeft = activeItems;
-			}
-		});
-	} else {
-		itemsCount.textContent = "0";
-	}
-};
+// const itemsChecker = () => {
+// 	if (itemsCount.textContent !== "0") {
+// 		todoContainer.forEach((eachTodo) => {
+// 			let activeItems = 0;
+// 			if (eachTodo.dataset.status === "active") {
+// 				activeItems++;
+// 				itemsLeft = activeItems;
+// 			}
+// 		});
+// 	} else {
+// 		itemsCount.textContent = "0";
+// 	}
+// };
 
 // Creating ToDo func
 
@@ -52,24 +62,33 @@ const createTodo = () => {
 
 // checked func
 
-const checked = (e) => {
+const checked = async (e) => {
 	const target = e.target;
-	target.classList.toggle("checked");
-	target.nextSibling.classList.toggle("marked-color");
-	target.nextSibling.lastChild.classList.toggle("marked-line");
+	const parent = await e.target.closest(".box");
+	target.parentElement.classList.toggle("active");
+	parent.classList.toggle("active");
+
+	if (parent.classList.length === 3) {
+		parent.dataset.status = "done";
+	} else {
+		parent.dataset.status = "undone";
+	}
 };
+
+checkboxes.forEach((checkbox) => {
+	checkbox.addEventListener("click", checked);
+});
 
 // remove todo func
 
 const removed = async (e) => {
-	const toRemove = e.target.parentElement;
+	const toRemove = await e.target.parentElement;
 	await toRemove.classList.add("remove");
-	setTimeout(
-		await function () {
+	if (toRemove.matches(".remove")) {
+		setTimeout(function () {
 			toRemove.style.display = "none";
-		},
-		200
-	);
+		}, 200);
+	}
 };
 
 removes.forEach((each) => {
@@ -111,18 +130,12 @@ const footer = (e) => {
 	}
 };
 
-todoContainer.addEventListener("dragover", (e) => {
-	e.preventDefault();
-});
+// todoContainer.addEventListener("dragover", (e) => {
+// 	e.preventDefault();
+// });
 
-todoContainer.addEventListener("drop", (e) => {});
+// todoContainer.addEventListener("drop", (e) => {});
 
-const giveDrag = (arg) => {
-	arg.addEventLIstener("dragstart", (e) => {});
-};
-
-checkboxes.forEach((checkbox) => {
-	checkbox.addEventListener("click", () => {
-		checkbox.classList.toggle("active");
-	});
-});
+// const giveDrag = (arg) => {
+// 	arg.addEventLIstener("dragstart", (e) => {});
+// };

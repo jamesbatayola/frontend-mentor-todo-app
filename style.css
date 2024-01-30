@@ -148,16 +148,31 @@ h1 {
 
 .line-mark {
 	position: absolute;
-	width: 100%;
+	width: 0%;
+	opacity: 0;
 	height: 3px;
 	transform: translateY(-50%);
 	bottom: 50%;
-	background-color: purple;
+	transition: width 200ms;
+	background-color: var(--Dark-Grayish-Blue);
 }
 
 .todo-name {
 	position: relative;
 	border: 1px solid black;
+}
+
+.box.active {
+	color: var(--Dark-Grayish-Blue);
+}
+
+.box.active .line-mark {
+	opacity: 1;
+	width: 100%;
+}
+
+.box.active .check-icon {
+	opacity: 1;
 }
 
 .remove-icon {
@@ -182,10 +197,6 @@ h1 {
 	background: linear-gradient(140deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
 	border-radius: 50%;
 	transition: opacity 100ms;
-}
-
-.checkbox.active .check-icon {
-	opacity: 1;
 }
 
 /* ToDo-FOOTER */
