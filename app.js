@@ -4,7 +4,7 @@ const input = document.querySelector(".todo-input");
 
 const todoContainer = document.querySelector(".todo-container");
 
-const check = document.querySelector(".check-icon");
+const checkboxes = document.querySelectorAll(".checkbox");
 
 const remove = document.querySelector(".remove-icon");
 
@@ -114,3 +114,9 @@ todoContainer.addEventListener("drop", (e) => {});
 const giveDrag = (arg) => {
 	arg.addEventLIstener("dragstart", (e) => {});
 };
+
+checkboxes.forEach((checkbox) => {
+	checkbox.addEventListener("click", () => {
+		checkbox.classList.toggle("active");
+	});
+});

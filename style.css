@@ -14,10 +14,12 @@
 }
 
 input {
+	color: black;
+	width: 100%;
 	font: inherit;
-	padding-block: 1.2rem;
 	outline: none;
 	border: none;
+	padding-block: 1.2rem;
 	background-color: transparent;
 }
 
@@ -33,13 +35,14 @@ body {
 	min-height: 100vh;
 	justify-content: center;
 	align-items: start;
+	background-color: var(--Very-Light-Grayish-Blue);
 }
 
 :root {
 	/* ### Primary */
 
 	--Bright-Blue: hsl(220, 98%, 61%);
-	--Check-Background: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
+	--Check-Background: linear-gradient hsl(192, 100%, 67%), hsl(280, 87%, 65%);
 
 	/* ### Neutral */
 
@@ -63,6 +66,7 @@ body {
 .background {
 	position: absolute;
 	min-height: 25%;
+	max-height: 215px;
 	width: 100%;
 	z-index: -1;
 	top: 0;
@@ -70,14 +74,17 @@ body {
 }
 
 main {
+	display: grid;
 	border: 1px solid red;
 	width: 90%;
-	margin-top: 7rem;
+	margin-top: 3rem;
+	position: relative;
 }
 
 /* HEADER */
 
 header {
+	margin-bottom: 2rem;
 	display: flex;
 	justify-content: space-between;
 }
@@ -97,17 +104,46 @@ h1 {
 /* Create ToDo Section */
 
 .create-input {
-	background-color: var(--Very-Dark-Grayish-Blue);
-	border-radius: 0.3rem;
-	display: flex;
-	padding-inline: 1rem;
-	align-items: center;
 	gap: 1rem;
+	display: grid;
+	grid-template-columns: 24px 1fr;
+	align-items: center;
+	padding-inline: 1rem;
+	background-color: white;
+	margin-bottom: 1rem;
+	border-radius: 0.5rem;
+	box-shadow: 0px 8px 6px -6px rgba(0, 0, 0, 0.2);
+}
+
+.box {
+	gap: 1rem;
+	display: flex;
+	align-items: center;
+	padding: 1.2rem 1rem;
+	background-color: white;
+	box-shadow: 0px 8px 6px -6px rgb(255, 0, 0);
 }
 
 /* List Container */
 
+.todo-container {
+	border-radius: 0.4rem;
+	overflow: hidden;
+}
+
+.todo-list {
+	border-radius: 0.4rem;
+	overflow: hidden;
+	display: grid;
+	gap: 1px;
+}
+
+.remove-icon {
+	margin-left: auto;
+}
+
 .checkbox {
+	overflow: hidden;
 	display: grid;
 	place-items: center;
 	cursor: pointer;
@@ -118,17 +154,37 @@ h1 {
 }
 
 .check-icon {
-	opacity: 0;
-	transition: 500ms;
+	opacity: 0.1;
+	padding: 0.5rem;
+	background: linear-gradient(140deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+	border-radius: 50%;
+	transition: opacity 200ms;
 }
 
 .checkbox.active .check-icon {
 	opacity: 1;
 }
 
-/* FOOTER */
+/* ToDo-FOOTER */
+
+.todo-footer {
+	justify-content: space-between;
+	margin-top: 5px;
+}
+
+.footer-toggles {
+	position: absolute;
+	bottom: 0;
+	display: none;
+}
 
 footer {
 	position: absolute;
 	bottom: 0;
+}
+
+button {
+	background-color: transparent;
+	border: 1px solid black;
+	cursor: pointer;
 }
