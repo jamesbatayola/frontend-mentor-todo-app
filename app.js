@@ -6,7 +6,7 @@ const todoContainer = document.querySelector(".todo-container");
 
 const checkboxes = document.querySelectorAll(".checkbox");
 
-const remove = document.querySelector(".remove-icon");
+const removes = document.querySelectorAll(".remove-icon");
 
 const allButton = document.querySelector(".all-preview");
 
@@ -61,14 +61,20 @@ const checked = (e) => {
 
 // remove todo func
 
-const removed = (e) => {
-	const target = e.target;
-	setTimeout(() => {
-		const toRemove = target.parentElement;
-		toRemove.classList.add("remove");
-		todoContainer.removeChild(toRemove);
-	}, 500);
+const removed = async (e) => {
+	const toRemove = e.target.parentElement;
+	await toRemove.classList.add("remove");
+	setTimeout(
+		await function () {
+			toRemove.style.display = "none";
+		},
+		200
+	);
 };
+
+removes.forEach((each) => {
+	each.addEventListener("click", removed);
+});
 
 // footer toggle buttons
 

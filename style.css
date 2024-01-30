@@ -66,7 +66,7 @@ body {
 .background {
 	position: absolute;
 	min-height: 25%;
-	max-height: 215px;
+	max-height: 35%;
 	width: 100%;
 	z-index: -1;
 	top: 0;
@@ -120,8 +120,14 @@ h1 {
 	display: flex;
 	align-items: center;
 	padding: 1.2rem 1rem;
+	transition: 150ms;
 	background-color: white;
-	box-shadow: 0px 8px 6px -6px rgb(255, 0, 0);
+	box-shadow: 0px 8px 6px -6px rgba(0, 0, 0, 0.1);
+}
+
+.box.remove {
+	opacity: 0;
+	transform: translateX(100%);
 }
 
 /* List Container */
@@ -132,14 +138,31 @@ h1 {
 }
 
 .todo-list {
+	border: 1px solid lime;
 	border-radius: 0.4rem;
 	overflow: hidden;
+	padding-bottom: 1px;
 	display: grid;
 	gap: 1px;
 }
 
+.line-mark {
+	position: absolute;
+	width: 100%;
+	height: 3px;
+	transform: translateY(-50%);
+	bottom: 50%;
+	background-color: purple;
+}
+
+.todo-name {
+	position: relative;
+	border: 1px solid black;
+}
+
 .remove-icon {
 	margin-left: auto;
+	cursor: pointer;
 }
 
 .checkbox {
@@ -158,7 +181,7 @@ h1 {
 	padding: 0.5rem;
 	background: linear-gradient(140deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
 	border-radius: 50%;
-	transition: opacity 200ms;
+	transition: opacity 100ms;
 }
 
 .checkbox.active .check-icon {
@@ -169,13 +192,26 @@ h1 {
 
 .todo-footer {
 	justify-content: space-between;
-	margin-top: 5px;
+	border-radius: 0.4rem;
+	/* margin-top: 10px; */
 }
 
 .footer-toggles {
+	border-radius: 0.4rem;
 	position: absolute;
-	bottom: 0;
-	display: none;
+	bottom: -4.5rem;
+	width: 100%;
+	display: block;
+	right: 0;
+	background-color: white;
+	display: flex;
+	justify-content: center;
+	gap: 1rem;
+	padding-block: 1rem;
+}
+
+.footer-toggles button {
+	font-size: 700;
 }
 
 footer {
@@ -185,6 +221,16 @@ footer {
 
 button {
 	background-color: transparent;
-	border: 1px solid black;
+	border: none;
 	cursor: pointer;
+}
+
+@media (min-width: 726px) {
+	.footer-toggles {
+		position: static;
+		display: flex;
+		width: auto;
+		padding-block: 0;
+		gap: 1rem;
+	}
 }
