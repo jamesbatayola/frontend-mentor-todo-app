@@ -1,36 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Todo app</title>
+		<link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
+		<link rel="stylesheet" href="style.css" />
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
-</head>
-<body>
+		<title>Frontend Mentor | Todo app</title>
+	</head>
+	<body>
+		<img class="background" src="/images/bg-mobile-light.jpg" alt="" />
+		<main>
+			<header>
+				<h1>Todo</h1>
+				<img class="theme-icon" src="/images/icon-sun.svg" alt="theme-icon" />
+			</header>
+			<div class="create-input box">
+				<span class="checkbox"></span>
+				<input class="todo-input" type="text" placeholder="Create a new todo....." />
+			</div>
+			<div class="todo-container">
+				<div class="todo-list">
+					<div class="todo box">
+						<!-- <span class="checkbox"></span> -->
+						<p class="todo-name">HHHHHHHHHH</p>
+						<svg class="remove-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+							<path
+								fill="#494C6B"
+								fill-rule="evenodd"
+								d="M16.97 0l.708.707L9.546 8.84l8.132 8.132-.707.707-8.132-8.132-8.132 8.132L0 16.97l8.132-8.132L0 .707.707 0 8.84 8.132 16.971 0z"
+							/>
+						</svg>
+					</div>
+					<div class="todo box">
+						<!-- <span class="checkbox"></span> -->
+						<p class="todo-name">YYYYYYYYYY</p>
+						<svg class="remove-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+							<path
+								fill="#494C6B"
+								fill-rule="evenodd"
+								d="M16.97 0l.708.707L9.546 8.84l8.132 8.132-.707.707-8.132-8.132-8.132 8.132L0 16.97l8.132-8.132L0 .707.707 0 8.84 8.132 16.971 0z"
+							/>
+						</svg>
+					</div>
+				</div>
+				<div class="todo-footer">
+					<p class=".items-left"></p>
+					<div class="footer-toggles">
+						<button>All</button>
+						<button>Active</button>
+						<button>Completed</button>
+					</div>
+					<button class="clear-button">Clear Completed</button>
+				</div>
+			</div>
+		</main>
+		<footer>
+			<p>Drag and drop to reorder list</p>
+		</footer>
 
-  Todo
-
-  <!-- Add dynamic number --> items left
-
-  All
-  Active 
-  Completed
-
-  Clear Completed
-
-  Drag and drop to reorder list
-
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
-</body>
+		<!-- <div class="attribution">
+			Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. Coded by
+			<a href="#">Your Name Here</a>.
+		</div> -->
+	</body>
 </html>

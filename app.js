@@ -29,7 +29,8 @@ const itemsChecker = () => {
 		todoContainer.forEach((eachTodo) => {
 			let activeItems = 0;
 			if (eachTodo.dataset.status === "active") {
-				return;
+				activeItems++;
+				itemsLeft = activeItems;
 			}
 		});
 	} else {

@@ -1,0 +1,134 @@
+@import url("https://fonts.googleapis.com/css2?family=Epilogue:wght@500;700&family=Josefin+Sans:wght@400;700&family=Manrope:wght@600;800&family=Poppins:ital@1&family=Red+Hat+Text:wght@700&display=swap");
+
+*,
+*::before,
+*::after {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+* {
+	font-size: inherit;
+	font-family: "Josefin Sans", sans-serif;
+}
+
+input {
+	font: inherit;
+	padding-block: 1.2rem;
+	outline: none;
+	border: none;
+	background-color: transparent;
+}
+
+img,
+svg {
+	display: block;
+	width: auto;
+	height: auto;
+}
+
+body {
+	display: flex;
+	min-height: 100vh;
+	justify-content: center;
+	align-items: start;
+}
+
+:root {
+	/* ### Primary */
+
+	--Bright-Blue: hsl(220, 98%, 61%);
+	--Check-Background: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
+
+	/* ### Neutral */
+
+	/* ### Light Theme */
+
+	--Very-Light-Gray: hsl(0, 0%, 98%);
+	--Very-Light-Grayish-Blue: hsl(236, 33%, 92%);
+	--Light-Grayish-Blue: hsl(233, 11%, 84%);
+	--Dark-Grayish-Blue: hsl(236, 9%, 61%);
+	--Very-Dark-Grayish-Blue: hsl(235, 19%, 35%);
+
+	/* ### Dark Theme */
+
+	--Very-Dark-Blue: hsl(235, 21%, 11%);
+	--Very-Dark-Desaturated-Blue: hsl(235, 24%, 19%);
+	--Dark-Grayish-Blue: hsl(234, 11%, 52%);
+	--Very-Dark-Grayish-Blue: hsl(233, 14%, 35%);
+	--Very-Dark-Grayish-Blue: hsl(237, 14%, 26%);
+}
+
+.background {
+	position: absolute;
+	min-height: 25%;
+	width: 100%;
+	z-index: -1;
+	top: 0;
+	left: 0;
+}
+
+main {
+	border: 1px solid red;
+	width: 90%;
+	margin-top: 7rem;
+}
+
+/* HEADER */
+
+header {
+	display: flex;
+	justify-content: space-between;
+}
+
+h1 {
+	font-size: 2rem;
+	text-transform: uppercase;
+	color: var(--Very-Light-Gray);
+	letter-spacing: 0.5rem;
+}
+
+.theme-icon {
+	width: 25px;
+	height: 25px;
+}
+
+/* Create ToDo Section */
+
+.create-input {
+	background-color: var(--Very-Dark-Grayish-Blue);
+	border-radius: 0.3rem;
+	display: flex;
+	padding-inline: 1rem;
+	align-items: center;
+	gap: 1rem;
+}
+
+/* List Container */
+
+.checkbox {
+	display: grid;
+	place-items: center;
+	cursor: pointer;
+	border: 1px solid var(--Dark-Grayish-Blue);
+	width: 22px;
+	border-radius: 50%;
+	aspect-ratio: 1 / 1;
+}
+
+.check-icon {
+	opacity: 0;
+	transition: 500ms;
+}
+
+.checkbox.active .check-icon {
+	opacity: 1;
+}
+
+/* FOOTER */
+
+footer {
+	position: absolute;
+	bottom: 0;
+}
