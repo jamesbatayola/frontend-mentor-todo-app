@@ -103,3 +103,13 @@ const footer = (e) => {
 			break;
 	}
 };
+
+todoContainer.addEventListener("dragover", (e) => {
+	e.preventDefault();
+});
+
+todoContainer.addEventListener("drop", (e) => {});
+
+const giveDrag = (arg) => {
+	arg.addEventLIstener("dragstart", (e) => {});
+};
