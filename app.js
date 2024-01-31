@@ -4,7 +4,7 @@ const themeIcon = document.querySelector(".theme-icon");
 
 const checkboxez = document.querySelectorAll(".checkbox");
 
-const footerText = document.querySelectorAll(".footer-text");
+// const footerText = document.querySelectorAll(".footer-text");
 
 const input = document.querySelector(".todo-input");
 

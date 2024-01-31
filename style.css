@@ -65,8 +65,8 @@ body {
 
 .background {
 	position: absolute;
-	min-height: 25%;
-	max-height: 25%;
+	min-height: 27%;
+	max-height: 27%;
 	width: 100%;
 	z-index: -1;
 	top: 0;
@@ -226,10 +226,12 @@ h1 {
 	justify-content: center;
 	gap: 1rem;
 	padding-block: 1rem;
+	box-shadow: 1px 0px 6px rgba(0, 0, 0, 0.1);
 }
 
 .footer-toggles button {
-	font-size: 700;
+	font-weight: bold;
+	color: var(--Dark-light-Grayish-Blue);
 }
 
 footer {
@@ -274,5 +276,6 @@ button:hover {
 		width: auto;
 		padding-block: 0;
 		gap: 1rem;
+		box-shadow: none;
 	}
 }
