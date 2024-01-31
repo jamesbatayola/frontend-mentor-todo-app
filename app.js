@@ -14,7 +14,7 @@ const todoContainer = document.querySelector(".todo-container");
 
 const todoList = document.querySelector(".todo-list");
 
-const todos = document.querySelectorAll(".todo");
+// const todos = document.querySelectorAll(".todo");
 
 const removes = document.querySelectorAll(".remove-icon");
 
@@ -83,7 +83,7 @@ const checked = (e) => {
 	target.parentElement.classList.toggle("active");
 	parent.classList.toggle("active");
 
-	if (parent.classList.length === 3) {
+	if (parent.classList.length === 4) {
 		parent.dataset.status = "done";
 	} else {
 		parent.dataset.status = "undone";
@@ -225,34 +225,32 @@ removes.forEach((each) => {
 
 const footer = (e) => {
 	const target = e.target.textContent;
+	const todos = document.querySelectorAll(".todo");
 
 	switch (target) {
 		case "All":
 			console.log("ALL!");
-			for (const todo of todoList) {
-				// todo.style.display = "block";
-				console.log(todo);
-			}
+			for (const todo of todos) todo.style.display = "flex";
 			break;
 		case "Active":
 			console.log("ACTIVE!");
-			// for (const todo of todoList) {
-			// 	if (todo.dataset.status === "Active") {
-			// 		todo.style.display = "block";
-			// 	} else {
-			// 		todo.style.display = "none";
-			// 	}
-			// }
+			for (const todo of todos) {
+				if (todo.dataset.status === "done") {
+					todo.style.display = "none";
+				} else {
+					todo.style.display = "flex";
+				}
+			}
 			break;
 		case "Completed":
 			console.log("COMPLETED!");
-			// for (const todo of todoList) {
-			// 	if (todo.dataset.status === "Completed") {
-			// 		todo.style.display = "block";
-			// 	} else {
-			// 		todo.style.display = "none";
-			// 	}
-			// }
+			for (const todo of todos) {
+				if (todo.dataset.status === "done") {
+					todo.style.display = "flex";
+				} else {
+					todo.style.display = "none";
+				}
+			}
 			break;
 
 		default:
