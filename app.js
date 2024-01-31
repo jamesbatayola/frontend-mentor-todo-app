@@ -35,24 +35,6 @@ let itemsLeft = 2;
 let isMobile;
 let isDesktop;
 
-const changeEachBox = (colors) => {
-	boxTheme.forEach((each) => {
-		each.style.backgroundColor = colors;
-	});
-};
-
-const changeEachText = (colors) => {
-	text.forEach((each) => {
-		each.style.color = colors;
-	});
-};
-
-const changeEachFooter = (colors) => {
-	footerText.forEach((each) => {
-		each.style.color = colors;
-	});
-};
-
 const displayCheck = () => {
 	if (window.innerWidth > 726) {
 		isDesktop = true;
@@ -79,19 +61,31 @@ window.addEventListener("resize", displayCheck);
 
 let isLight = true;
 
+const changeAllThemes = () => {
+	boxTheme.forEach((each) => {
+		each.classList.toggle("boxColor");
+		console.log("hello");
+	});
+	text.forEach((each) => {
+		each.classList.toggle("textColor");
+	});
+	checkboxes.forEach((each) => {
+		each.classList.toggle("checkboxColor");
+	});
+};
+
 const changeTheme = () => {
+	const allBox = document.querySelectorAll(".box-theme");
+	console.log(allBox);
 	if (isMobile) {
 		if (isLight) {
-			changeEachBox("var(--Very-Dark-Desaturated-Blue)");
-			changeEachText("var(--Light-Grayish-Blue)");
-			changeEachFooter("var(--Dark-light-Grayish-Blue)");
+			changeAllThemes();
 			themeIcon.src = "/images/icon-moon.svg";
 			background.src = "/images/bg-mobile-dark.jpg";
 			document.body.style.backgroundColor = "var(--Very-Dark-Blue)";
 			isLight = false;
 		} else {
-			changeEachBox("white");
-			changeEachText("var(--Very-Dark-Blue)");
+			changeAllThemes();
 			themeIcon.src = "/images/icon-sun.svg";
 			background.src = "/images/bg-mobile-light.jpg";
 			document.body.style.backgroundColor = "var(--Very-Light-Gray)";
@@ -99,16 +93,13 @@ const changeTheme = () => {
 		}
 	} else if (isDesktop) {
 		if (isLight) {
-			changeEachBox("var(--Very-Dark-Desaturated-Blue)");
-			changeEachText("var(--Light-Grayish-Blue)");
-			changeEachFooter("var(--Dark-light-Grayish-Blue)");
+			changeAllThemes();
 			themeIcon.src = "/images/icon-moon.svg";
 			background.src = "/images/bg-desktop-dark.jpg";
 			document.body.style.backgroundColor = "var(--Very-Dark-Blue)";
 			isLight = false;
 		} else {
-			changeEachBox("white");
-			changeEachText("var(--Very-Dark-Blue)");
+			changeAllThemes();
 			themeIcon.src = "/images/icon-sun.svg";
 			background.src = "/images/bg-desktop-light.jpg";
 			document.body.style.backgroundColor = "var(--Very-Light-Gray)";
@@ -137,11 +128,15 @@ themeIcon.addEventListener("click", changeTheme);
 
 // Creating ToDo func
 
+// const newChangeTheme() => {
+
+// }
+
 const createTodo = (e) => {
 	e.preventDefault();
 	if (input.value !== "") {
 		const newDiv = document.createElement("div");
-		newDiv.classList.add("todo", "box");
+		newDiv.classList.add("todo", "box", "box-theme");
 		newDiv.setAttribute("draggable", "true");
 		newDiv.setAttribute("data-status", "undone");
 		newDiv.innerHTML = `
@@ -151,7 +146,7 @@ const createTodo = (e) => {
 				<path fill="none" stroke="#FFF" stroke-width="2.5" d="M1 4.304L3.696 7l6-6" />
 			</svg>
 		</span>
-		<p class="todo-name"><span class="line-mark"></span>${input.value}</p>
+		<p class="todo-name text"><span class="line-mark"></span>${input.value}</p>
 		<svg class="remove-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18">
 			<path
 				fill="#494C6B"
@@ -161,15 +156,30 @@ const createTodo = (e) => {
 		</svg>
 
         `;
+
 		todoList.append(newDiv);
 		input.value = "";
+
+		if (!isLight) {
+			newDiv.classList.toggle("boxColor");
+			newDiv.children[1].classList.toggle("textColor");
+			newDiv.firstElementChild.classList.toggle("checkboxColor");
+		}
 
 		const newCheckbox = newDiv.firstElementChild;
 		const newRemove = newDiv.lastElementChild;
 		newCheckbox.onclick = checked;
 		newRemove.onclick = removed;
 	} else {
-		input.classList.add("input-empty");
+		console.log("input is empty!");
+	}
+};
+
+const checkTheme = (newText, newBox, newCheck) => {
+	if (!isLight) {
+		for (const i of newText) i.classList.toggle("textColor");
+		for (const i of newBox) i.classList.toggle("boxColor");
+		for (const i of newCheck) i.classList.toggle("checkboxColor");
 	}
 };
 
@@ -202,7 +212,6 @@ const removed = async (e) => {
 	await toRemove.classList.add("remove");
 	console.log(toRemove);
 	setTimeout(function () {
-		// toRemove.style.display = "none";
 		todoList.removeChild(toRemove);
 	}, 200);
 };

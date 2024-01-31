@@ -121,7 +121,7 @@ h1 {
 	display: flex;
 	align-items: center;
 	padding: 1.2rem 1rem;
-	transition: 150ms;
+	transition: opacity 200ms, transform 150ms;
 	background-color: white;
 	box-shadow: 0px 8px 6px -6px rgba(0, 0, 0, 0.1);
 }
@@ -211,7 +211,6 @@ h1 {
 	justify-content: space-between;
 	border-bottom-right-radius: 0.4rem;
 	border-bottom-left-radius: 0.4rem;
-	/* margin-top: 10px; */
 }
 
 .footer-toggles {
@@ -237,10 +236,30 @@ footer {
 	bottom: 0;
 }
 
+.footer-text {
+	color: var(--Dark-Grayish-Blue);
+}
+
 button {
 	background-color: transparent;
 	border: none;
 	cursor: pointer;
+}
+
+button:hover {
+	color: black;
+}
+
+.text.textColor {
+	color: var(--Light-Grayish-Blue);
+}
+
+.box-theme.boxColor {
+	background-color: var(--Very-Dark-Desaturated-Blue);
+}
+
+.checkbox.checkboxColor {
+	border: 1px solid var(--Very-very-Dark-Grayish-Blue);
 }
 
 @media (min-width: 726px) {
