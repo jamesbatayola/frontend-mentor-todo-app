@@ -4,6 +4,10 @@ const themeIcon = document.querySelector(".theme-icon");
 
 const boxTheme = document.querySelectorAll(".box-theme");
 
+const text = document.querySelectorAll(".text");
+
+const footerText = document.querySelectorAll(".footer-text");
+
 const input = document.querySelector(".todo-input");
 
 const form = document.querySelector("form");
@@ -33,7 +37,19 @@ let isDesktop;
 
 const changeEachBox = (colors) => {
 	boxTheme.forEach((each) => {
-		each.style.backgroundColor = `${colors}`;
+		each.style.backgroundColor = colors;
+	});
+};
+
+const changeEachText = (colors) => {
+	text.forEach((each) => {
+		each.style.color = colors;
+	});
+};
+
+const changeEachFooter = (colors) => {
+	footerText.forEach((each) => {
+		each.style.color = colors;
 	});
 };
 
@@ -66,21 +82,34 @@ let isLight = true;
 const changeTheme = () => {
 	if (isMobile) {
 		if (isLight) {
-			changeEachBox(`--Very-very-Dark-Grayish-Blue`);
+			changeEachBox("var(--Very-Dark-Desaturated-Blue)");
+			changeEachText("var(--Light-Grayish-Blue)");
+			changeEachFooter("var(--Dark-light-Grayish-Blue)");
+			themeIcon.src = "/images/icon-moon.svg";
 			background.src = "/images/bg-mobile-dark.jpg";
 			document.body.style.backgroundColor = "var(--Very-Dark-Blue)";
 			isLight = false;
 		} else {
+			changeEachBox("white");
+			changeEachText("var(--Very-Dark-Blue)");
+			themeIcon.src = "/images/icon-sun.svg";
 			background.src = "/images/bg-mobile-light.jpg";
 			document.body.style.backgroundColor = "var(--Very-Light-Gray)";
 			isLight = true;
 		}
 	} else if (isDesktop) {
 		if (isLight) {
+			changeEachBox("var(--Very-Dark-Desaturated-Blue)");
+			changeEachText("var(--Light-Grayish-Blue)");
+			changeEachFooter("var(--Dark-light-Grayish-Blue)");
+			themeIcon.src = "/images/icon-moon.svg";
 			background.src = "/images/bg-desktop-dark.jpg";
 			document.body.style.backgroundColor = "var(--Very-Dark-Blue)";
 			isLight = false;
 		} else {
+			changeEachBox("white");
+			changeEachText("var(--Very-Dark-Blue)");
+			themeIcon.src = "/images/icon-sun.svg";
 			background.src = "/images/bg-desktop-light.jpg";
 			document.body.style.backgroundColor = "var(--Very-Light-Gray)";
 			isLight = true;
