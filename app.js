@@ -1,8 +1,16 @@
 const background = document.querySelector(".background");
 
+const themeIcon = document.querySelector(".theme-icon");
+
+const boxTheme = document.querySelectorAll(".box-theme");
+
 const input = document.querySelector(".todo-input");
 
+const form = document.querySelector("form");
+
 const todoContainer = document.querySelector(".todo-container");
+
+const todoList = document.querySelector(".todo-list");
 
 const todos = document.querySelectorAll(".todo");
 
@@ -18,19 +26,69 @@ const itemsCount = document.querySelector(".items-left");
 
 let itemsLeft = 2;
 
-// change theme func
+// window size function
 
-const changeTheme = () => {
-	background.src = "";
+let isMobile;
+let isDesktop;
+
+const changeEachBox = (colors) => {
+	boxTheme.forEach((each) => {
+		each.style.backgroundColor = `${colors}`;
+	});
 };
 
-// dragging func
+const displayCheck = () => {
+	if (window.innerWidth > 726) {
+		isDesktop = true;
+		isMobile = false;
+		if (isLight) {
+			background.src = "/images/bg-desktop-light.jpg";
+		} else {
+			background.src = "/images/bg-desktop-dark.jpg";
+		}
+	} else {
+		isDesktop = false;
+		isMobile = true;
+		if (isLight) {
+			background.src = "/images/bg-mobile-light.jpg";
+		} else {
+			background.src = "/images/bg-mobile-dark.jpg";
+		}
+	}
+};
 
-todos.forEach((todo) => {
-	todo.addEventListener("dragstart", () => {
-		console.log("hello world");
-	});
-});
+window.addEventListener("resize", displayCheck);
+
+// change theme func
+
+let isLight = true;
+
+const changeTheme = () => {
+	if (isMobile) {
+		if (isLight) {
+			changeEachBox(`--Very-very-Dark-Grayish-Blue`);
+			background.src = "/images/bg-mobile-dark.jpg";
+			document.body.style.backgroundColor = "var(--Very-Dark-Blue)";
+			isLight = false;
+		} else {
+			background.src = "/images/bg-mobile-light.jpg";
+			document.body.style.backgroundColor = "var(--Very-Light-Gray)";
+			isLight = true;
+		}
+	} else if (isDesktop) {
+		if (isLight) {
+			background.src = "/images/bg-desktop-dark.jpg";
+			document.body.style.backgroundColor = "var(--Very-Dark-Blue)";
+			isLight = false;
+		} else {
+			background.src = "/images/bg-desktop-light.jpg";
+			document.body.style.backgroundColor = "var(--Very-Light-Gray)";
+			isLight = true;
+		}
+	}
+};
+
+themeIcon.addEventListener("click", changeTheme);
 
 // Uncomplete items checker func
 
@@ -50,15 +108,43 @@ todos.forEach((todo) => {
 
 // Creating ToDo func
 
-const createTodo = () => {
+const createTodo = (e) => {
+	e.preventDefault();
 	if (input.value !== "") {
-		const newTodo = document.createElement("div");
-		newTodo.classList.add("todo");
-		todoContainer.append(newTodo);
+		const newDiv = document.createElement("div");
+		newDiv.classList.add("todo", "box");
+		newDiv.setAttribute("draggable", "true");
+		newDiv.setAttribute("data-status", "undone");
+		newDiv.innerHTML = `
+
+        <span class="checkbox">
+			<svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="11" height="9">
+				<path fill="none" stroke="#FFF" stroke-width="2.5" d="M1 4.304L3.696 7l6-6" />
+			</svg>
+		</span>
+		<p class="todo-name"><span class="line-mark"></span>${input.value}</p>
+		<svg class="remove-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+			<path
+				fill="#494C6B"
+				fill-rule="evenodd"
+				d="M16.97 0l.708.707L9.546 8.84l8.132 8.132-.707.707-8.132-8.132-8.132 8.132L0 16.97l8.132-8.132L0 .707.707 0 8.84 8.132 16.971 0z"
+			/>
+		</svg>
+
+        `;
+		todoList.append(newDiv);
+		input.value = "";
+
+		const newCheckbox = newDiv.firstElementChild;
+		const newRemove = newDiv.lastElementChild;
+		newCheckbox.onclick = checked;
+		newRemove.onclick = removed;
 	} else {
 		input.classList.add("input-empty");
 	}
 };
+
+form.addEventListener("submit", createTodo);
 
 // checked func
 
@@ -82,13 +168,14 @@ checkboxes.forEach((checkbox) => {
 // remove todo func
 
 const removed = async (e) => {
-	const toRemove = await e.target.parentElement;
+	e.preventDefault();
+	const toRemove = e.target.closest(".todo");
 	await toRemove.classList.add("remove");
-	if (toRemove.matches(".remove")) {
-		setTimeout(function () {
-			toRemove.style.display = "none";
-		}, 200);
-	}
+	console.log(toRemove);
+	setTimeout(function () {
+		// toRemove.style.display = "none";
+		todoList.removeChild(toRemove);
+	}, 200);
 };
 
 removes.forEach((each) => {
@@ -102,12 +189,12 @@ const footer = (e) => {
 
 	switch (target) {
 		case "All":
-			for (const todo of todoContainer) {
+			for (const todo of todoList) {
 				todo.style.display = "block";
 			}
 			break;
 		case "Active":
-			for (const todo of todoContainer) {
+			for (const todo of todoList) {
 				if (todo.dataset.status === "Active") {
 					todo.style.display = "block";
 				} else {
@@ -116,7 +203,7 @@ const footer = (e) => {
 			}
 			break;
 		case "Completed":
-			for (const todo of todoContainer) {
+			for (const todo of todoList) {
 				if (todo.dataset.status === "Completed") {
 					todo.style.display = "block";
 				} else {
@@ -130,12 +217,35 @@ const footer = (e) => {
 	}
 };
 
-// todoContainer.addEventListener("dragover", (e) => {
-// 	e.preventDefault();
-// });
+// drag & drop functions
 
-// todoContainer.addEventListener("drop", (e) => {});
+todoList.addEventListener("dragstart", (e) => {
+	e.target.classList.add("selected");
+});
 
-// const giveDrag = (arg) => {
-// 	arg.addEventLIstener("dragstart", (e) => {});
-// };
+todoList.addEventListener("dragend", (e) => {
+	e.target.classList.remove("selected");
+});
+
+todoList.addEventListener("dragover", (e) => {
+	e.preventDefault();
+});
+
+todoList.addEventListener("drop", (e) => {
+	const yCoordinatePercentage = Math.floor(((e.clientY - e.target.getBoundingClientRect().top) / e.target.getBoundingClientRect().height) * 100);
+	const currentDragging = document.querySelector(".selected");
+	let currentHover = e.target.closest(".box");
+
+	console.log(yCoordinatePercentage);
+	console.log(currentHover);
+
+	if (yCoordinatePercentage < 30) {
+		todoList.insertBefore(currentDragging, currentHover);
+	}
+
+	if (yCoordinatePercentage > 70) {
+		currentHover.after(currentDragging);
+	}
+});
+
+displayCheck();

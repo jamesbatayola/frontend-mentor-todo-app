@@ -35,7 +35,7 @@ body {
 	min-height: 100vh;
 	justify-content: center;
 	align-items: start;
-	background-color: var(--Very-Light-Grayish-Blue);
+	background-color: var(--Very-Light-Gray);
 }
 
 :root {
@@ -60,7 +60,7 @@ body {
 	--Very-Dark-Desaturated-Blue: hsl(235, 24%, 19%);
 	--Dark-Grayish-Blue: hsl(234, 11%, 52%);
 	--Very-Dark-Grayish-Blue: hsl(233, 14%, 35%);
-	--Very-Dark-Grayish-Blue: hsl(237, 14%, 26%);
+	--Very-very-Dark-Grayish-Blue: hsl(237, 14%, 26%);
 }
 
 .background {
@@ -99,6 +99,7 @@ h1 {
 .theme-icon {
 	width: 25px;
 	height: 25px;
+	cursor: pointer;
 }
 
 /* Create ToDo Section */
@@ -116,13 +117,17 @@ h1 {
 }
 
 .box {
-	gap: 1rem;
+	gap: 0.7rem;
 	display: flex;
 	align-items: center;
 	padding: 1.2rem 1rem;
 	transition: 150ms;
 	background-color: white;
 	box-shadow: 0px 8px 6px -6px rgba(0, 0, 0, 0.1);
+}
+
+.box.selected {
+	border: 1px solid yellow;
 }
 
 .box.remove {
@@ -138,8 +143,8 @@ h1 {
 }
 
 .todo-list {
-	border: 1px solid lime;
-	border-radius: 0.4rem;
+	border-top-left-radius: 0.4rem;
+	border-top-right-radius: 0.4rem;
 	overflow: hidden;
 	padding-bottom: 1px;
 	display: grid;
@@ -150,20 +155,20 @@ h1 {
 	position: absolute;
 	width: 0%;
 	opacity: 0;
-	height: 3px;
+	height: 1px;
 	transform: translateY(-50%);
 	bottom: 50%;
 	transition: width 200ms;
-	background-color: var(--Dark-Grayish-Blue);
+	background-color: rgba(128, 128, 128, 0.95);
 }
 
 .todo-name {
 	position: relative;
-	border: 1px solid black;
+	font-size: 0.9rem;
 }
 
 .box.active {
-	color: var(--Dark-Grayish-Blue);
+	color: rgba(128, 128, 128, 0.95);
 }
 
 .box.active .line-mark {
@@ -181,11 +186,12 @@ h1 {
 }
 
 .checkbox {
+	background-color: white;
 	overflow: hidden;
 	display: grid;
 	place-items: center;
 	cursor: pointer;
-	border: 1px solid var(--Dark-Grayish-Blue);
+	border: 1px solid var(--Light-Grayish-Blue);
 	width: 22px;
 	border-radius: 50%;
 	aspect-ratio: 1 / 1;
@@ -203,7 +209,8 @@ h1 {
 
 .todo-footer {
 	justify-content: space-between;
-	border-radius: 0.4rem;
+	border-bottom-right-radius: 0.4rem;
+	border-bottom-left-radius: 0.4rem;
 	/* margin-top: 10px; */
 }
 
