@@ -2,9 +2,7 @@ const background = document.querySelector(".background");
 
 const themeIcon = document.querySelector(".theme-icon");
 
-const boxTheme = document.querySelectorAll(".box-theme");
-
-const text = document.querySelectorAll(".text");
+const checkboxez = document.querySelectorAll(".checkbox");
 
 const footerText = document.querySelectorAll(".footer-text");
 
@@ -18,8 +16,6 @@ const todoList = document.querySelector(".todo-list");
 
 const todos = document.querySelectorAll(".todo");
 
-const checkboxes = document.querySelectorAll(".checkbox");
-
 const removes = document.querySelectorAll(".remove-icon");
 
 const allButton = document.querySelector(".all-preview");
@@ -27,6 +23,8 @@ const allButton = document.querySelector(".all-preview");
 const activeButton = document.querySelector(".active-preview");
 
 const itemsCount = document.querySelector(".items-left");
+
+const todoFooter = document.querySelector(".todo-footer");
 
 let itemsLeft = 2;
 
@@ -62,6 +60,10 @@ window.addEventListener("resize", displayCheck);
 let isLight = true;
 
 const changeAllThemes = () => {
+	const checkboxes = document.querySelectorAll(".checkbox");
+	const boxTheme = document.querySelectorAll(".box-theme");
+	const text = document.querySelectorAll(".text");
+
 	boxTheme.forEach((each) => {
 		each.classList.toggle("boxColor");
 		console.log("hello");
@@ -70,9 +72,25 @@ const changeAllThemes = () => {
 		each.classList.toggle("textColor");
 	});
 	checkboxes.forEach((each) => {
+		console.log("JAKE!");
 		each.classList.toggle("checkboxColor");
 	});
 };
+
+const checked = (e) => {
+	const target = e.target;
+	const parent = e.target.closest(".box");
+	target.parentElement.classList.toggle("active");
+	parent.classList.toggle("active");
+
+	if (parent.classList.length === 3) {
+		parent.dataset.status = "done";
+	} else {
+		parent.dataset.status = "undone";
+	}
+};
+
+for (eachCheckbox of checkboxez) eachCheckbox.onclick = checked;
 
 const changeTheme = () => {
 	const allBox = document.querySelectorAll(".box-theme");
@@ -187,29 +205,12 @@ form.addEventListener("submit", createTodo);
 
 // checked func
 
-const checked = async (e) => {
-	const target = e.target;
-	const parent = await e.target.closest(".box");
-	target.parentElement.classList.toggle("active");
-	parent.classList.toggle("active");
-
-	if (parent.classList.length === 3) {
-		parent.dataset.status = "done";
-	} else {
-		parent.dataset.status = "undone";
-	}
-};
-
-checkboxes.forEach((checkbox) => {
-	checkbox.addEventListener("click", checked);
-});
-
 // remove todo func
 
-const removed = async (e) => {
+const removed = (e) => {
 	e.preventDefault();
 	const toRemove = e.target.closest(".todo");
-	await toRemove.classList.add("remove");
+	toRemove.classList.add("remove");
 	console.log(toRemove);
 	setTimeout(function () {
 		todoList.removeChild(toRemove);
@@ -227,33 +228,39 @@ const footer = (e) => {
 
 	switch (target) {
 		case "All":
+			console.log("ALL!");
 			for (const todo of todoList) {
-				todo.style.display = "block";
+				// todo.style.display = "block";
+				console.log(todo);
 			}
 			break;
 		case "Active":
-			for (const todo of todoList) {
-				if (todo.dataset.status === "Active") {
-					todo.style.display = "block";
-				} else {
-					todo.style.display = "none";
-				}
-			}
+			console.log("ACTIVE!");
+			// for (const todo of todoList) {
+			// 	if (todo.dataset.status === "Active") {
+			// 		todo.style.display = "block";
+			// 	} else {
+			// 		todo.style.display = "none";
+			// 	}
+			// }
 			break;
 		case "Completed":
-			for (const todo of todoList) {
-				if (todo.dataset.status === "Completed") {
-					todo.style.display = "block";
-				} else {
-					todo.style.display = "none";
-				}
-			}
+			console.log("COMPLETED!");
+			// for (const todo of todoList) {
+			// 	if (todo.dataset.status === "Completed") {
+			// 		todo.style.display = "block";
+			// 	} else {
+			// 		todo.style.display = "none";
+			// 	}
+			// }
 			break;
 
 		default:
 			break;
 	}
 };
+
+todoFooter.onclick = footer;
 
 // drag & drop functions
 
