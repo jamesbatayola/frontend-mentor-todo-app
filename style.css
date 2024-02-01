@@ -65,8 +65,8 @@ body {
 
 .background {
 	position: absolute;
-	min-height: 27%;
-	max-height: 27%;
+	min-height: 257px;
+	max-height: 257px;
 	width: 100%;
 	z-index: -1;
 	top: 0;
@@ -212,6 +212,7 @@ h1 {
 	justify-content: space-between;
 	border-bottom-right-radius: 0.4rem;
 	border-bottom-left-radius: 0.4rem;
+	padding: 1.387rem;
 }
 
 .footer-toggles {
@@ -225,18 +226,13 @@ h1 {
 	display: flex;
 	justify-content: center;
 	gap: 1rem;
-	padding-block: 1rem;
+	padding-block: 1.1rem;
 	box-shadow: 1px 0px 6px rgba(0, 0, 0, 0.1);
 }
 
 .footer-toggles button {
 	font-weight: bold;
 	color: var(--Dark-light-Grayish-Blue);
-}
-
-footer {
-	position: absolute;
-	bottom: 0;
 }
 
 .footer-text {

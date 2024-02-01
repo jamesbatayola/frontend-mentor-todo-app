@@ -83,10 +83,16 @@ const checked = (e) => {
 	target.parentElement.classList.toggle("active");
 	parent.classList.toggle("active");
 
-	if (parent.classList.length === 4) {
-		parent.dataset.status = "done";
-	} else {
-		parent.dataset.status = "undone";
+	const allTodo = document.querySelectorAll(".todo");
+
+	for (const todo of allTodo) {
+		for (const classes of todo.classList) {
+			if (classes === "active") {
+				todo.dataset.status = "done";
+			} else {
+				todo.dataset.status = "undone";
+			}
+		}
 	}
 };
 
@@ -130,25 +136,21 @@ themeIcon.addEventListener("click", changeTheme);
 
 // Uncomplete items checker func
 
-// const itemsChecker = () => {
-// 	if (itemsCount.textContent !== "0") {
-// 		todoContainer.forEach((eachTodo) => {
-// 			let activeItems = 0;
-// 			if (eachTodo.dataset.status === "active") {
-// 				activeItems++;
-// 				itemsLeft = activeItems;
-// 			}
-// 		});
-// 	} else {
-// 		itemsCount.textContent = "0";
-// 	}
-// };
+const itemsChecker = () => {
+	if (itemsCount.textContent !== "0") {
+		todoContainer.forEach((eachTodo) => {
+			let activeItems = 0;
+			if (eachTodo.dataset.status === "active") {
+				activeItems++;
+				itemsLeft = activeItems;
+			}
+		});
+	} else {
+		itemsCount.textContent = "0";
+	}
+};
 
 // Creating ToDo func
-
-// const newChangeTheme() => {
-
-// }
 
 const createTodo = (e) => {
 	e.preventDefault();
