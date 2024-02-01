@@ -22,11 +22,7 @@ const allButton = document.querySelector(".all-preview");
 
 const activeButton = document.querySelector(".active-preview");
 
-const itemsCount = document.querySelector(".items-left");
-
 const todoFooter = document.querySelector(".todo-footer");
-
-let itemsLeft = 2;
 
 // window size function
 
@@ -94,6 +90,8 @@ const checked = (e) => {
 			}
 		}
 	}
+
+	itemsChecker();
 };
 
 for (eachCheckbox of checkboxez) eachCheckbox.onclick = checked;
@@ -136,17 +134,21 @@ themeIcon.addEventListener("click", changeTheme);
 
 // Uncomplete items checker func
 
+let itemsCount = document.querySelector(".items-left");
+
+let itemsLeft = 0;
+
 const itemsChecker = () => {
-	if (itemsCount.textContent !== "0") {
-		todoContainer.forEach((eachTodo) => {
-			let activeItems = 0;
-			if (eachTodo.dataset.status === "active") {
-				activeItems++;
-				itemsLeft = activeItems;
-			}
-		});
-	} else {
-		itemsCount.textContent = "0";
+	const allTodo = document.querySelectorAll(".todo");
+
+	let itemsActive = 0;
+
+	for (const todo of allTodo) {
+		console.log(todo.dataset.status);
+		if (todo.dataset.status === "undone") {
+			itemsActive++;
+			itemsCount.textContent = itemsActive;
+		}
 	}
 };
 
@@ -193,6 +195,8 @@ const createTodo = (e) => {
 	} else {
 		console.log("input is empty!");
 	}
+
+	itemsChecker();
 };
 
 const checkTheme = (newText, newBox, newCheck) => {
@@ -216,6 +220,7 @@ const removed = (e) => {
 	console.log(toRemove);
 	setTimeout(function () {
 		todoList.removeChild(toRemove);
+		itemsChecker();
 	}, 200);
 };
 
@@ -294,3 +299,5 @@ todoList.addEventListener("drop", (e) => {
 });
 
 displayCheck();
+
+itemsChecker();
