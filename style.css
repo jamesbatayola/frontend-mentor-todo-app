@@ -198,6 +198,10 @@ h1 {
 	aspect-ratio: 1 / 1;
 }
 
+.checkbox.checkboxColor {
+	border: 1px solid var(--Very-very-Dark-Grayish-Blue);
+}
+
 .check-icon {
 	opacity: 0;
 	padding: 0.5rem;
@@ -256,10 +260,6 @@ button:hover {
 .box-theme.boxColor {
 	background-color: var(--Very-Dark-Desaturated-Blue);
 	box-shadow: 1px 1px 0 rgba(255, 255, 255, 0.15);
-}
-
-.checkbox.checkboxColor {
-	border: 1px solid var(--Very-very-Dark-Grayish-Blue);
 }
 
 @media (min-width: 726px) {

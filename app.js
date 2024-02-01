@@ -94,7 +94,11 @@ const checked = (e) => {
 	itemsChecker();
 };
 
+const check_input = document.querySelector(".input-check");
+
 for (eachCheckbox of checkboxez) eachCheckbox.onclick = checked;
+
+check_input.removeEventListener("click", checked);
 
 const changeTheme = () => {
 	const allBox = document.querySelectorAll(".box-theme");
